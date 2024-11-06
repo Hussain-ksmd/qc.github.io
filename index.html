@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MacBook Hardware Checklist</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>MacBook Hardware Test Checklist</h1>
+    <p>Select each item as you complete its test</p>
+  </header>
+
+  <section id="checklist">
+    <ul>
+      <li><input type="checkbox" id="power" onclick="saveCheckboxState('power')"> Power Button</li>
+      <li><input type="checkbox" id="wifi" onclick="saveCheckboxState('wifi')"> WiFi</li>
+      <li><input type="checkbox" id="sound" onclick="saveCheckboxState('sound')"> Sound</li>
+      <li><input type="checkbox" id="camera" onclick="saveCheckboxState('camera')"> Camera</li>
+      <li><input type="checkbox" id="keyboard" onclick="saveCheckboxState('keyboard')"> Keyboard</li>
+      <li><input type="checkbox" id="trackpad" onclick="saveCheckboxState('trackpad')"> Trackpad</li>
+      <li><input type="checkbox" id="touchbar" onclick="saveCheckboxState('touchbar')"> Touch Bar</li>
+      <li><input type="checkbox" id="batteryHealth" onclick="saveCheckboxState('batteryHealth')"> Battery Health</li>
+    </ul>
+  </section>
+
+  <script>
+    // Function to save checkbox state in local storage
+    function saveCheckboxState(id) {
+      const checkbox = document.getElementById(id);
+      localStorage.setItem(id, checkbox.checked);
+    }
+
+    // Function to load saved checkbox states on page load
+    function loadCheckboxStates() {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        const savedState = localStorage.getItem(checkbox.id);
+        checkbox.checked = savedState === 'true';
+      });
+    }
+
+    // Load checkbox states when the page loads
+    window.onload = loadCheckboxStates;
+  </script>
+</body>
+</html>
